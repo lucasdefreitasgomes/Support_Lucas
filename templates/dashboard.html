@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Suporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Bem-vindo, {{ session['user_name'] }}</h2>
+
+        <div class="content-wrapper">
+            <div class="form-section">
+                <h3>Abrir novo chamado</h3>
+                <form method="POST" action="{{ url_for('new_ticket') }}" enctype="multipart/form-data">
+                    <label for="subject">Assunto</label>
+                    <input type="text" name="subject" required>
+
+                    <label for="message">Mensagem</label>
+                    <textarea name="message" rows="5" required></textarea>
+
+                    <label for="image">Imagem (opcional)</label>
+                    <input type="file" name="image">
+
+                    <button type="submit" class="btn">Enviar Chamado</button>
+                </form>
+            </div>
+
+            <div class="tickets-section">
+                <h3>Meus Chamados / Status</h3>
+                {% if tickets %}
+                    <ul>
+                        {% for ticket in tickets %}
+                            <li>
+                                <strong>Assunto:</strong> {{ ticket[1] }}<br>
+                                <strong>Mensagem:</strong> {{ ticket[2] }}<br>
+                                <strong>Status:</strong> {{ ticket[3] }}<br>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="pagination">
+                        {% if current_page > 1 %}
+                            <a href="{{ url_for('dashboard', page=current_page - 1) }}">« Anterior</a>
+                        {% endif %}
+                        <span>Página {{ current_page }} de {{ total_pages }}</span>
+                        {% if current_page < total_pages %}
+                            <a href="{{ url_for('dashboard', page=current_page + 1) }}">Próximo »</a>
+                        {% endif %}
+                    </div>
+
+                {% else %}
+                    <p>Você ainda não abriu nenhum chamado.</p>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

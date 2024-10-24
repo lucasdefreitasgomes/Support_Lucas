@@ -1,0 +1,113 @@
+/* users.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px; /* Tamanho maior para o título */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold; /* Deixar o texto em negrito */
+}
+
+table tr:hover {
+    background-color: #e9ecef; /* Destaque na linha ao passar o mouse */
+}
+
+.user-actions {
+    display: flex; /* Usar flexbox para colocar os campos lado a lado */
+    align-items: center; /* Alinhar verticalmente ao centro */
+    gap: 5px; /* Espaço entre os elementos */
+}
+
+input[type="text"], input[type="email"] {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100px; /* Largura ajustada */
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn {
+    padding: 6px 10px; /* Tamanho do botão ajustado */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 12px; /* Tamanho da fonte do botão */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Cor para o botão de deletar */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+a.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+a.btn:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilização geral para o rodapé ou outros elementos, se necessário */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador - Suporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Painel do Administrador</h2>
+        <a href="{{ url_for('view_users') }}" class="btn">Visualizar Usuários</a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Assunto</th>
+                    <th>Mensagem</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket[0] }}</td>
+                    <td>{{ ticket[1] }}</td>
+                    <td>{{ ticket[2] }}</td>
+                    <td>{{ ticket[3] }}</td>
+                    <td>{{ ticket[4] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('update_ticket', ticket_id=ticket[0]) }}">
+                            <select name="status">
+                                <option value="aberto" {% if ticket[4] == 'aberto' %}selected{% endif %}>Aberto</option>
+                                <option value="em andamento" {% if ticket[4] == 'em andamento' %}selected{% endif %}>Em Andamento</option>
+                                <option value="resolvido" {% if ticket[4] == 'resolvido' %}selected{% endif %}>Resolvido</option>
+                            </select>
+                            <button type="submit" class="btn">Atualizar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="{{ url_for('admin_dashboard', page=current_page - 1) }}" class="btn">Página Anterior</a>
+            {% endif %}
+
+            <span>Página {{ current_page }} de {{ total_pages }}</span>
+
+            {% if current_page < total_pages %}
+                <a href="{{ url_for('admin_dashboard', page=current_page + 1) }}" class="btn">Próxima Página</a>
+            {% endif %}
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

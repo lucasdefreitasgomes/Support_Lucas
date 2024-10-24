@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte - Abertura de Tickets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Abertura de Ticket</h1>
+        <form action="{{ url_for('submit_ticket') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="user">Usuário:</label>
+                <select name="user" class="form-control" required>
+                    {% for user in users %}
+                    <option value="{{ user[0] }}">{{ user[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Assunto:</label>
+                <input type="text" name="subject" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Mensagem:</label>
+                <textarea name="message" rows="5" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Enviar imagem (opcional):</label>
+                <input type="file" name="image" class="form-control">
+            </div>
+
+            <button type="submit" class="btn">Enviar Ticket</button>
+        </form>
+
+        <div class="link">
+            <a href="{{ url_for('register') }}">Registrar novo usuário</a>
+        </div>
+    </div>
+</body>
+</html>
